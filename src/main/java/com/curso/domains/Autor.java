@@ -1,9 +1,12 @@
 package com.curso.domains;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,6 +22,10 @@ public class Autor {
 
     @NotNull @NotBlank
     private String documentoPessoal;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "autor")
+    private List<Livro> livros = new ArrayList<>();
 
     public Autor() {
     }
@@ -51,6 +58,14 @@ public class Autor {
 
     public void setDocumentoPessoal(String documentoPessoal) {
         this.documentoPessoal = documentoPessoal;
+    }
+
+    public List<Livro> getLivros() {
+        return livros;
+    }
+
+    public void setLivros(List<Livro> livros) {
+        this.livros = livros;
     }
 
     @Override

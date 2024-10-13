@@ -1,11 +1,14 @@
 package com.curso.services;
 
+import com.curso.domains.Editora;
 import com.curso.domains.dtos.EditoraDTO;
 import com.curso.repositories.EditoraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,6 +21,16 @@ public class EditoraService {
         return editoraRepo.findAll().stream()
                 .map(obj -> new EditoraDTO(obj))
                 .collect(Collectors.toList());
+    }
+
+    public Editora findbyId(int id) {
+        Optional<Editora> obj = editoraRepo.findById(id);
+        return obj.orElse(null);
+    }
+
+    public Editora findbyCnpj(String cnpj){
+        Optional<Editora> obj = editoraRepo.findByCnpj(cnpj);
+        return obj.orElse(null);
     }
 
 }
