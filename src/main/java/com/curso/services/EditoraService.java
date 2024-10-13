@@ -3,6 +3,7 @@ package com.curso.services;
 import com.curso.domains.Editora;
 import com.curso.domains.dtos.EditoraDTO;
 import com.curso.repositories.EditoraRepository;
+import com.curso.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,12 +26,16 @@ public class EditoraService {
 
     public Editora findbyId(int id) {
         Optional<Editora> obj = editoraRepo.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(
+                () -> new ObjectNotFoundException("Editora não encontrada. ID: " +id)
+        );
     }
 
     public Editora findbyCnpj(String cnpj){
         Optional<Editora> obj = editoraRepo.findByCnpj(cnpj);
-        return obj.orElse(null);
+        return obj.orElseThrow(
+                () -> new ObjectNotFoundException("Editora não encontrada. CNPJ: " +cnpj)
+        );
     }
 
 }
