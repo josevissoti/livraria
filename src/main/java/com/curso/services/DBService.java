@@ -28,16 +28,16 @@ public class DBService {
 
     public void initDB(){
 
-        Editora editora01 = new Editora(0, "562938", "Saraiva");
-        Editora editora02 = new Editora(0, "752902", "Bom Jesus");
+        Editora editora01 = new Editora(null, "562938", "Saraiva");
+        Editora editora02 = new Editora(null, "752902", "Bom Jesus");
 
-        Autor autor01 = new Autor(0, "Machado de Assis", "725398275");
-        Autor autor02 = new Autor(0, "Eiichiro Oda", "62962302370");
+        Autor autor01 = new Autor(null, "Machado de Assis", "725398275");
+        Autor autor02 = new Autor(null, "Eiichiro Oda", "62962302370");
 
-        Livro livro01 = new Livro(0, "Memórias Póstumas de Brás Cubas", "4792347927",
+        Livro livro01 = new Livro(null, "Memórias Póstumas de Brás Cubas", "4792347927",
                 42, LocalDate.now(), new BigDecimal("325.90"), autor01, editora02,
                 Status.LENDO, Conservacao.BOM);
-        Livro livro02 = new Livro(0, "One Piece", "5729752352", 2052, LocalDate.now(),
+        Livro livro02 = new Livro(null, "One Piece", "5729752352", 2052, LocalDate.now(),
                 new BigDecimal("293.80"), autor02, editora01, Status.LIDO, Conservacao.EXCELENTE);
 
         autorRepo.save(autor01);
